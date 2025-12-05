@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('cpf', 11)->unique(); 
+            $table->string('email');
+            $table->foreignId('ide_perfil')->constrained('profiles'); 
+            $table->boolean('ind_excluido')->default(false);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
